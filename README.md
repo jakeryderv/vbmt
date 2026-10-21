@@ -8,11 +8,15 @@ How reliably can pretrained monocular body reconstruction recover basketball mov
 
 ## Initial scope
 
-Start with short, fixed-camera clips of one clearly visible player performing a repeatable action, such as a jump shot. Use pretrained [SAM 3D Body](https://github.com/facebookresearch/sam-3d-body) for single-image body reconstruction, then investigate consistency across frames.
+Start by evaluating reconstruction on short movement sequences with synchronized reference measurements, using one camera view as input. Use pretrained [SAM 3D Body](https://github.com/facebookresearch/sam-3d-body) for single-image body reconstruction, then investigate consistency across frames. Apply the validated workflow to controlled basketball footage afterward.
 
 The initial work focuses on reconstruction evaluation, temporal processing, and measurement definitions. Multi-player tracking, moving cameras, broadcast footage, and training a new reconstruction model are outside the first experiment.
 
 This repository is currently a project scaffold; the workflow below is planned.
+
+See the [documentation index](docs/README.md) for [SAM 3D Body setup](docs/sam-3d-body.md) and the [data-selection and evaluation direction](docs/data-and-evaluation.md).
+
+The planned tooling combines a reusable Python pipeline with a local web app for synchronized video, 3D motion, and measurement inspection. See the [architecture](docs/architecture.md) and [first implementation slice](docs/first-slice.md) for the proposed structure and starting plan.
 
 ## Proposed approach
 
@@ -23,7 +27,8 @@ This repository is currently a project scaffold; the workflow below is planned.
 
 ## First experiment
 
-- Select a few short clips of the same action and document recording conditions, including frame rate, camera viewpoint, and visibility.
+- Inspect a small BioCV or OpenCap laboratory-validation subset before selecting the first benchmark. Confirm video/reference synchronization and compatible measurement definitions.
+- Select a few movements and participants, document recording conditions, and reserve participants for evaluation before tuning refinements.
 - Save per-frame reconstruction outputs and inspect overlays against the source video.
 - Apply one simple temporal method and compare it with the unprocessed baseline.
 - Plot the selected measurements alongside missing detections and visible reconstruction failures.
